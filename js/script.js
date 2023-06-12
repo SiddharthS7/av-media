@@ -20,11 +20,22 @@ var firebaseConfig = {
     var email = document.getElementById("email").value;
     var msg = document.getElementById("message").value;
 
+    let date = new Date();
+    const formattedDate = date.toLocaleString("en-GB", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+      hour: "numeric",
+      minute: "2-digit"
+    });
+
+    console.log(formattedDate);
+
     db.collection("users").add({
       name: name,
       email: email,
       message: msg,
-      datetime: new Date().toLocaleString()
+      datetime: formattedDate
     })
     .then(function(docRef) {
         window.alert("Message sent successfully!");
